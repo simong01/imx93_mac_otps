@@ -48,6 +48,7 @@ void imx_get_mac_from_fuse(int dev_id, uint32_t val_0, uint32_t val_1)
 }
 
 #define BD_OUI 0x0019b8
+#define BD_OUI2 BD_OUI
 
 int main() {
 	uint32_t input[2] = {};
@@ -68,7 +69,7 @@ int main() {
 	fuses[4] = (((BD_OUI & 0xffff00) >> 8) | ((input[1] & 0x00ffff) << 16));
 	printf("Value of fuse 4 in HEX: %08X\n", fuses[4]);
 
-	fuses[5] = (((BD_OUI & 0xffffff) << 8) | ((input[1] & 0xff0000) >> 16));
+	fuses[5] = (((BD_OUI2 & 0xffffff) << 8) | ((input[1] & 0xff0000) >> 16));
 	printf("Value of fuse 5 in HEX: %08X\n", fuses[5]);
 	
 	printf("eth0 : ");
